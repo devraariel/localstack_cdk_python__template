@@ -1,10 +1,10 @@
-# AWS stand-alone Linux-based development template
+# AWS Standalone Linux-based Development Template
 
-This repository will let you run a fully local free AWS development environment. Python is used where possible. It is meant to be used as a starting-point for your own project.
+This repository will let you run a fully local, free, AWS development environment. It is meant to be used as a starting point for your own project. Python is used where possible.
 
 The repository contains a Python-heavy cookbook, integrating localstack (which allows development without an AWS account or related expenses) and CDK (AWS's great Infrastructure-as-code project).
 
-As is, this repository contains a working demo of a functional serverless back-end which is composed of the following:
+As is, this repository contains a working demo of a functional serverless backend, which is composed of the following:
 
 - REST-API-gateway: an HTTP server that accepts URLs. 
 
@@ -13,8 +13,8 @@ As is, this repository contains a working demo of a functional serverless back-e
 
 - A single DynamoDB table, which is accessed by the Lambda.
 
-I have made a couple of unconventional design choices which are explained in the "Design Choices" section, below.
-Furthermore, pains were taken to document the installation process, choices and alternatives.
+I have made a couple of unconventional design choices, which are explained in the "Design Choices" section, below.
+Furthermore, I took pains to document the installation process, choices and alternatives.
 
 ## Overview
 
@@ -22,17 +22,17 @@ This repository contains detailed setup instructions, starting from a clean 20.0
 
 This template uses a few AWS services:
 
-- REST API gateway: Here used with an IP white-list and the API calls defined, so that the gateway can reject non-well-formed URLs and traffic from unwanted IPs.
-- DynamoDB: defined with two sample tables at the CDK/stack level.
+- REST API gateway: Here used with an IP white list and the API calls defined, so that the gateway can reject non-well-formed URLs and traffic from unwanted IPs.
+- DynamoDB: Defined with two sample tables at the CDK/stack level.
 - Lambda: A single Lambda is present. It lists the users in the users table.
-- CDK and CloudFormation: are used to deploy the above resources in a single step.
+- CDK and CloudFormation: Used to deploy the above resources in a single step.
 
 The technologies demonstrated here are:
 
 - Usage of Python Virtual Environment(s) for most of the packages.
-- Optional installation of all the globally-installed packages automatically using Ansible.
-- 100% local development by using the  'localstack' project.
-- 'Single click' infrastructure deployment using AWS's CDK project.
+- Optional installation of all the globally installed packages automatically using Ansible.
+- 100% local development using the 'localstack' project.
+- 'Single-click' infrastructure deployment using AWS's CDK project.
 
 This project uses Python wherever possible:
 
@@ -45,7 +45,7 @@ This project uses Python wherever possible:
 ### CDK:
 
 - Only a part of the normal CDK deployment process is used. Specifically, I have chosen to only use the "synth" (i.e., generate Cloud-Formation template) feature of the CDK. This enables a more detailed control of and insight into the deployment process.
- You may prefer to use CDK-deploy - it will make your life much simpler.
+ You may prefer to use CDK-deploy. It will make your life much simpler.
 
 - Lambdas are deployed by reading the code and including the code as part of the stack.
  This will break once the Lambda is above a certain size. Improvements are TBD.
@@ -105,7 +105,7 @@ sudo apt install -y nodejs
 
 ### Configure AWS profile
 
-In order to use localstack, we need a configured AWS profile.
+In order to use localstack, you need a configured AWS profile.
 If you already have a profile defined, localstack will work fine with the existing definition.
 If you do not have a profile defined, the following commands will create a new profile:
 **The following commands will overwrite your existing profile (if present)**
@@ -170,7 +170,7 @@ cd infrastructure/cdk_template
 cdk synth
 ```
 
-Running `cdk synth` should emit the template to the screen as  a JSON string.
+Running `cdk synth` should emit the template to the screen as a JSON string.
 
 If there are issues:
 
@@ -210,7 +210,7 @@ You will need to re-deploy the stack every time you run the localstack services,
 cd <project folder>`
 . venv/bin/activate`
 cd infrastructure`
-./create_and_deploy_stack`    # Behold the power of the CDK: this single command will deploy all your services !
+./create_and_deploy_stack`    # Behold the power of the CDK: this single command will deploy all your services!
 ```
 
   Answer 'y' to use localstack    # As opposed to using the 'real' AWS
